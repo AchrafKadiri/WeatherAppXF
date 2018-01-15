@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="WeatherApp.Views.DetailPage"
+             Title="Detail Page"
+             Padding="40">
+    <StackLayout HorizontalOptions="Center"
+                 Spacing="20">
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Main :"/>
+            <Label Text="{Binding WeatherInfo.Main}" />
+
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Description :" />
+            <Label Text="{Binding WeatherInfo.Description}" />
+
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Temperature :" />
+            <Label Text="{Binding WeatherDetail.Main.Temp}" />
+
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Humidity :" />
+            <Label Text="{Binding WeatherDetail.Main.Humidity}" />
+
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Wind Speed :" />
+            <Label Text="{Binding WeatherDetail.Wind.Speed}" />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
