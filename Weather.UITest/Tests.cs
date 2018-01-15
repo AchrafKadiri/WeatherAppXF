@@ -30,6 +30,12 @@ namespace Weather.UITest
         {
             app.Screenshot("First screen.");
             app.Repl();
+
+            app.Tap("NoResourceEntry-4");
+            app.EnterText("NoResourceEntry-4", "Madrid");
+            app.DismissKeyboard();
+            app.Tap("NoResourceEntry-5");
+            app.Tap("NoResourceEntry-5");
         }
     }
 }

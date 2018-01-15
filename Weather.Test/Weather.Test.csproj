@@ -115,9 +115,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\WeatherApp\WeatherApp\WeatherApp.csproj">
       <Project>{51f3814c-faa2-4a49-b91f-a93e1237f77a}</Project>
