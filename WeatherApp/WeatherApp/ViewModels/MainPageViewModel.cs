@@ -20,8 +20,7 @@ namespace WeatherApp.ViewModels
         private INavigationService _navigationService;
         private IWeatherService _weatherService;
 
-        
-
+       
         public MainPageViewModel(INavigationService navigationService, IWeatherService weatherService) : base(navigationService)
         {
             _navigationService = navigationService;
