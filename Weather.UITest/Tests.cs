@@ -28,14 +28,28 @@ namespace Weather.UITest
         [Test]
         public void AppLaunches()
         {
-            app.Screenshot("First screen.");
-            app.Repl();
+            app.WaitForElement("NoResourceEntry-4");
+            app.Flash("NoResourceEntry-4");
+            app.Screenshot("Flash NoResourceEntry-4");
 
+            app.WaitForElement("NoResourceEntry-4");
             app.Tap("NoResourceEntry-4");
-            app.EnterText("NoResourceEntry-4", "Madrid");
+            app.Screenshot("Tap NoResourceEntry-4");
+
+            app.WaitForElement("NoResourceEntry-4");
+            app.EnterText("NoResourceEntry-4", "London");
+            app.Screenshot("EnterText NoResourceEntry-4");
+
+
             app.DismissKeyboard();
+
+            app.WaitForElement("NoResourceEntry-5");
             app.Tap("NoResourceEntry-5");
-            app.Tap("NoResourceEntry-5");
+            app.Screenshot("Tap NoResourceEntry-5");
+
+            app.WaitForElement("NoResourceEntry-13");
+            app.Tap("NoResourceEntry-13");
+            app.Screenshot("Tap NoResourceEntry-13");
         }
     }
 }

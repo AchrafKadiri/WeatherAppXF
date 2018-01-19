@@ -24,9 +24,5 @@ namespace WeatherApp.Constants
 
         public const string ApiKey = "4ac6eecbe9be59305202d72c6baa2a78";
 
-
-       // api.openweathermap.org/data/2.5/weather? q = Madrid & units = Metric & appid = 4ac6eecbe9be59305202d72c6baa2a78
-
-
     }
 }
