@@ -16,7 +16,7 @@ namespace WeatherApp.Extensions
 
         public static void DisplayAlert(this string message, string title = null)
         {
-            Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.DisplayAlert(title, message, "Ok"));
+            Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert(title, message, "Ok"));
         }
     }
 }

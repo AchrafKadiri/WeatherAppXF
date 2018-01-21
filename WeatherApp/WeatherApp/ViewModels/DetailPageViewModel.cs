@@ -1,32 +1,47 @@
-﻿using Prism.Navigation;
+﻿using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Navigation;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using WeatherApp.Models;
 
 namespace WeatherApp.ViewModels
 {
-    public abstract class DetailPageViewModel : ViewModelBase
+    public class DetailPageViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
 
         private WeatherObject _weatherDetail;
 
-        private WeatherObject WeatherDetail
+        public WeatherObject WeatherDetail
         {
-            get => _weatherDetail;
-            set => SetProperty(ref _weatherDetail, value);
+            get { return _weatherDetail; }
+            set { SetProperty(ref _weatherDetail, value); }
         }
 
-        protected DetailPageViewModel(INavigationService navigationService) : base(navigationService) => _navigationService = navigationService;
-        
+
+
+
+        public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
+        {
+            _navigationService = navigationService;
+        }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
             base.OnNavigatingTo(parameters);
             var weatherDetail = parameters["detail"];
-              
+           
+            
         }
 
-        public override void OnNavigatedFrom(NavigationParameters parameters) => base.OnNavigatedFrom(parameters);
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+                   
+        }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
@@ -35,7 +50,14 @@ namespace WeatherApp.ViewModels
             WeatherInfo = WeatherDetail.Weather.FirstOrDefault();
 
         }
-        public override void Destroy() => base.Destroy();
+        public override void Destroy()
+        {
+            base.Destroy();
+        }
+
+
+
+
 
     }
 }

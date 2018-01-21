@@ -12,27 +12,28 @@ namespace WeatherApp.ViewModels
 {
     public class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
-        private string _city;
+        protected INavigationService NavigationService { get; private set; }
 
-        protected string City
+        private string _city;
+        public string City
         {
-            get => _city;
-            set => SetProperty(ref _city, value);
+            get { return _city; }
+            set { SetProperty(ref _city, value); }
         }
 
         private bool _isBusy;
 
-        protected bool IsBusy
+        public bool IsBusy
         {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
         }
         private bool _isNotBusy = false;
 
-        protected bool IsNotBusy
+        public bool IsNotBusy
         {
-            get => _isNotBusy;
-            set => SetProperty(ref _isNotBusy, value);
+            get { return _isNotBusy; }
+            set { SetProperty(ref _isNotBusy, value); }
         }
 
 
@@ -42,32 +43,32 @@ namespace WeatherApp.ViewModels
 
         private Sys _sysInfo;
 
-        protected Sys SysInfo
+        public Sys SysInfo
 
         {
-            get => _sysInfo;
-            set => SetProperty(ref _sysInfo, value);
+            get { return _sysInfo; }
+            set { SetProperty(ref _sysInfo, value); }
         }
 
 
-        protected Main MainInfo
+        public Main MainInfo
         {
-            get => _mainInfo;
-            set => SetProperty(ref _mainInfo, value);
+            get { return _mainInfo; }
+            set { SetProperty(ref _mainInfo, value); }
         }
 
 
-        protected WeatherObject WeatherObj
+        public WeatherObject WeatherObj
         {
-            get => _weatherObj;
-            set => SetProperty(ref _weatherObj, value);
+            get { return _weatherObj; }
+            set { SetProperty(ref _weatherObj, value); }
         }
         private Weather _weatherInfo;
 
-        protected Weather WeatherInfo
+        public Weather WeatherInfo
         {
-            get => _weatherInfo;
-            set => SetProperty(ref _weatherInfo, value);
+            get { return _weatherInfo; }
+            set { SetProperty(ref _weatherInfo, value); }
         }
 
 
@@ -87,8 +88,9 @@ namespace WeatherApp.ViewModels
 
         }
 
-        protected ViewModelBase(INavigationService navigationService)
+        public ViewModelBase(INavigationService navigationService)
         {
+            NavigationService = navigationService;
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)

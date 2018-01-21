@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using WeatherApp.Constants;
 using System.Threading.Tasks;
 using WeatherApp.IServices;
@@ -10,6 +12,11 @@ namespace WeatherApp.Services
 {
     public class ApiService : ApiDriver, IApiService
     {
+        public ApiService() : base()
+        {
+
+        }
+
         public async Task<T> GetApi<T>(ApiUris apiUris, string city)
         {
             var uri = FabricateUrl(apiUris, city);
@@ -20,7 +27,7 @@ namespace WeatherApp.Services
         {
             try
             {
-                var content = await base.GetAsync<T>(uri);
+                T content = await base.GetAsync<T>(uri);
 
                 return content;
 
@@ -30,10 +37,13 @@ namespace WeatherApp.Services
 
                 throw new ApiException(ex.Message, ex);
             }
-            
         }
 
-        private static Uri FabricateUrl(ApiUris apiUris, string args) => new Uri($"{ApiProtocol}://{ApiHost}/{GetWeatherByCity}{args}&units={Metric}&appid={ApiKey}", UriKind.Absolute);
+        private Uri FabricateUrl(ApiUris apiUris,  string args)
+        {
 
+            return new Uri($"{API_PROTOCOL}://{API_HOST}/{GetWeatherByCity}{args}&units={Metric}&appid={ApiKey}", UriKind.Absolute);
+
+        }
     }
 }

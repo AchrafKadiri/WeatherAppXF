@@ -34,10 +34,13 @@ namespace WeatherApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
 
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<DetailPage, DetailPageViewModel>();
 
+
+            //containerRegistry.Register<ApiDriver>();
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.Register<IWeatherService, WeatherService>();
            

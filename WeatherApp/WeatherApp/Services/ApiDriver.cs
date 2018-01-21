@@ -12,21 +12,21 @@ namespace WeatherApp.Services
 {
     public class ApiDriver
     {
-        protected ApiDriver()
+        public ApiDriver()
         {
 
         }
 
-        protected async Task<T> GetAsync<T>(Uri webServiceUrl)
+        protected async Task<T> GetAsync<T>(Uri WebServiceUrl)
         {
             try
             {
                 CheckConnection();
-                using (var client =  new HttpClient())
+                using (HttpClient client =  new HttpClient())
                 {
-                    Debug.WriteLine($">>> Get {webServiceUrl} ");
-                    var response = await client.GetAsync(webServiceUrl);
-                    Debug.WriteLine($"<<< Get {webServiceUrl} ");
+                    Debug.WriteLine($">>> Get {WebServiceUrl} ");
+                    var response = await client.GetAsync(WebServiceUrl);
+                    Debug.WriteLine($"<<< Get {WebServiceUrl} ");
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -51,7 +51,7 @@ namespace WeatherApp.Services
             }
         }
 
-        private static void CheckConnection()
+        private void CheckConnection()
         {
             if (!CrossConnectivity.Current.IsConnected)
             {
@@ -59,16 +59,19 @@ namespace WeatherApp.Services
             }
         }
 
-        private static Exception ProcessException(Exception ex)
+        private Exception ProcessException(Exception ex)
         {
-            switch (ex)
+            if (ex is ConnectionException)
             {
-                case ConnectionException _:
-                    throw new ConnectionException("Please try again once connectiviy is reestablished", ex);
-                case ApiException _:
-                    throw new ApiException(ex.Message, ex);
-                default:
-                    throw new ApiException("Issue calling the WeatherService. Check the City name and try again", ex);
+                throw new ConnectionException("Please try again once connectiviy is reestablished", ex);
+            }        
+            else if (ex is ApiException)
+            {
+                throw new ApiException(ex.Message, ex);
+            }
+            else
+            {
+                throw new ApiException("Issue calling the WeatherService. Check the City name and try again", ex);
             }
         }
     }

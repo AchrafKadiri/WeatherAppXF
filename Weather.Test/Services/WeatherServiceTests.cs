@@ -1,25 +1,27 @@
-﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Prism.Navigation;
+using System.IO;
+using System.Threading.Tasks;
 using WeatherApp.IServices;
 using WeatherApp.Models;
+using WeatherApp.ViewModels;
 
-namespace Weather.Test.Services
+namespace Weather.Test
 {
     [TestClass]
     public class WeatherServiceTests
     {
-        private Mock<IWeatherService> _mockWeatherService;
-        private Mock<INavigationService> _mockNavigationService;
-        private WeatherObject _weatherObject;
+        private Mock<IWeatherService> mockWeatherService;
+        private Mock<INavigationService> mockNavigationService;
+        private WeatherObject weatherObject;
 
         [TestInitialize]
         public void Setup()
         {
-            _mockNavigationService = new Mock<INavigationService>();
-            _mockWeatherService = new Mock<IWeatherService>();
-            _weatherObject = new WeatherObject
+            mockNavigationService = new Mock<INavigationService>();
+            mockWeatherService = new Mock<IWeatherService>();
+            weatherObject = new WeatherObject
             {
                 Name = "Madrid",
                 Clouds = new Clouds { All = 20 },
@@ -37,9 +39,9 @@ namespace Weather.Test.Services
         [TestMethod]
         public void WeatherService_GetWeatherByLocation_ReturnWeather()
         {
-            _mockWeatherService.Setup(e => e.GetWeatherByLocation(It.IsAny<string>())).Returns(Task.FromResult(_weatherObject));
-            _mockWeatherService.Verify();
-            Assert.AreEqual(_weatherObject.Name, "Madrid");
+            mockWeatherService.Setup(e => e.GetWeatherByLocation(It.IsAny<string>())).Returns(Task.FromResult(weatherObject));
+            mockWeatherService.Verify();
+            Assert.AreEqual(weatherObject.Name, "Madrid");
         }
     }
 }
