@@ -12,27 +12,25 @@ namespace WeatherApp.ViewModels
 {
     public class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
-        protected INavigationService NavigationService { get; private set; }
-
         private string _city;
         public string City
         {
-            get { return _city; }
-            set { SetProperty(ref _city, value); }
+            get => _city;
+            set => SetProperty(ref _city, value);
         }
 
         private bool _isBusy;
 
         public bool IsBusy
         {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
         private bool _isNotBusy = false;
 
         public bool IsNotBusy
         {
-            get { return _isNotBusy; }
+            get => _isNotBusy;
             set { SetProperty(ref _isNotBusy, value); }
         }
 
@@ -90,7 +88,6 @@ namespace WeatherApp.ViewModels
 
         public ViewModelBase(INavigationService navigationService)
         {
-            NavigationService = navigationService;
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)

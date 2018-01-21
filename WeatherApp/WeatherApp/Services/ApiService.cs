@@ -27,7 +27,7 @@ namespace WeatherApp.Services
         {
             try
             {
-                T content = await base.GetAsync<T>(uri);
+                var content = await base.GetAsync<T>(uri);
 
                 return content;
 
@@ -39,11 +39,6 @@ namespace WeatherApp.Services
             }
         }
 
-        private Uri FabricateUrl(ApiUris apiUris,  string args)
-        {
-
-            return new Uri($"{API_PROTOCOL}://{API_HOST}/{GetWeatherByCity}{args}&units={Metric}&appid={ApiKey}", UriKind.Absolute);
-
-        }
+        private static Uri FabricateUrl(ApiUris apiUris, string args) => new Uri($"{API_PROTOCOL}://{API_HOST}/{GetWeatherByCity}{args}&units={Metric}&appid={ApiKey}", UriKind.Absolute);
     }
 }
