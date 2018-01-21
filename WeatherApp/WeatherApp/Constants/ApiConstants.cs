@@ -11,13 +11,13 @@ namespace WeatherApp.Constants
     }
     public enum ApiUris
     {
-        WeatherByCity_GET
+        WeatherByCityGet
     }
-    public class ApiConstants
+    public static class ApiConstants
     {
-        public const string API_HOST = "api.openweathermap.org";
+        public const string ApiHost = "api.openweathermap.org";
 
-        public const string API_PROTOCOL = "http";
+        public const string ApiProtocol = "http";
 
 
         public const string GetWeatherByCity = "data/2.5/weather?q=";

@@ -1,11 +1,6 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using Prism.Services;
+﻿using Prism.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WeatherApp.Extensions;
@@ -15,22 +10,20 @@ using Xamarin.Forms;
 
 namespace WeatherApp.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public abstract class MainPageViewModel : ViewModelBase
     {
-        private INavigationService _navigationService;
-        private IWeatherService _weatherService;
+        private readonly INavigationService _navigationService;
+        private readonly IWeatherService _weatherService;
 
-       
-        public MainPageViewModel(INavigationService navigationService, IWeatherService weatherService) : base(navigationService)
+
+        protected MainPageViewModel(INavigationService navigationService, IWeatherService weatherService) : base(navigationService)
         {
             _navigationService = navigationService;
             _weatherService = weatherService;
 
         }
 
-
-
-        public async Task Load()
+        private async Task Load()
         {
             try
             {
@@ -50,9 +43,9 @@ namespace WeatherApp.ViewModels
             }
         }
 
-        private void Set(WeatherObject CurrentWeather)
+        private void Set(WeatherObject currentWeather)
         {
-            WeatherObj = CurrentWeather;
+            WeatherObj = currentWeather;
 
             WeatherInfo = WeatherObj.Weather.FirstOrDefault();
             MainInfo = WeatherObj.Main;
@@ -65,8 +58,7 @@ namespace WeatherApp.ViewModels
         public ICommand NavigateDetailCommand => (new Command(
           async () =>
           {
-              NavigationParameters par = new NavigationParameters();
-              par.Add("detail", WeatherObj);
+              var par = new NavigationParameters {{"detail", WeatherObj}};
 
               await _navigationService.NavigateAsync("DetailPage", par);
           }));
@@ -77,36 +69,14 @@ namespace WeatherApp.ViewModels
               IsBusy = true;
               await Load().ToTaskRun();
              
-              
-
           }));
 
+        public override void OnNavigatingTo(NavigationParameters parameters) => base.OnNavigatingTo(parameters);
 
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
-        {
-            base.OnNavigatingTo(parameters);
-        }
+        public override void OnNavigatedFrom(NavigationParameters parameters) => base.OnNavigatedFrom(parameters);
 
-        public override void OnNavigatedFrom(NavigationParameters parameters)
-        {
-            base.OnNavigatedFrom(parameters);
-
-        }
-
-        public override void OnNavigatedTo(NavigationParameters parameters)
-        {
-            base.OnNavigatedTo(parameters);
-        }
-        public override void Destroy()
-        {
-            base.Destroy();
-        }
-
-
-
-
-
-
+        public override void OnNavigatedTo(NavigationParameters parameters) => base.OnNavigatedTo(parameters);
+        public override void Destroy() => base.Destroy();
     }
 }

@@ -9,30 +9,22 @@ using WeatherApp.Models;
 
 namespace WeatherApp.Services
 {
-    /// <summary>
-    /// Class that implements IWeatherService
-    /// This class can access to ApiService 
-    /// </summary>
-    public class WeatherService : IWeatherService
+    public abstract class WeatherService : IWeatherService
     {
-        private ApiService _apiService;
+        private readonly ApiService _apiService;
 
-        public WeatherService()
-        {
-            _apiService = new ApiService();
-        }
-     
+        protected WeatherService() => _apiService = new ApiService();
+
         async Task<WeatherObject> IWeatherService.GetWeatherByLocation(string city)
         {
             try
             {
                 
-                return await _apiService.GetApi<WeatherObject>(ApiUris.WeatherByCity_GET, city);
+                return await _apiService.GetApi<WeatherObject>(ApiUris.WeatherByCityGet, city);
             }
-            catch (Exception cex)
+            catch (Exception)
             {
-
-                throw cex;
+                throw;
             }
         }
     }
