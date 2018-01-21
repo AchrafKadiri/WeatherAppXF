@@ -28,28 +28,30 @@ namespace Weather.UITest
         [Test]
         public void AppLaunches()
         {
-            app.WaitForElement("NoResourceEntry-4");
-            app.Flash("NoResourceEntry-4");
-            app.Screenshot("Flash NoResourceEntry-4");
+            app.WaitForElement("NoResourceEntry-6");
+            app.Flash("NoResourceEntry-6");
+            app.Screenshot("Flash NoResourceEntry-6");
 
-            app.WaitForElement("NoResourceEntry-4");
-            app.Tap("NoResourceEntry-4");
-            app.Screenshot("Tap NoResourceEntry-4");
+            app.WaitForElement("NoResourceEntry-6");
+            app.Tap("NoResourceEntry-6");
+            app.Screenshot("Tap NoResourceEntry-6");
 
-            app.WaitForElement("NoResourceEntry-4");
-            app.EnterText("NoResourceEntry-4", "London");
-            app.Screenshot("EnterText NoResourceEntry-4");
+            app.WaitForElement("NoResourceEntry-6");
+            app.EnterText("NoResourceEntry-6", "Madrid");
+            app.Screenshot("Tap NoResourceEntry-6");
 
 
             app.DismissKeyboard();
 
-            app.WaitForElement("NoResourceEntry-5");
-            app.Tap("NoResourceEntry-5");
-            app.Screenshot("Tap NoResourceEntry-5");
+            app.WaitForElement("NoResourceEntry-7");
+            app.Tap("NoResourceEntry-7");
+            app.Screenshot("NoResourceEntry-7");
 
-            app.WaitForElement("NoResourceEntry-13");
-            app.Tap("NoResourceEntry-13");
-            app.Screenshot("Tap NoResourceEntry-13");
+
+
+            app.WaitForElement("NoResourceEntry-15");
+            app.Tap("NoResourceEntry-15");
+            app.Screenshot("NoResourceEntry-15");
         }
     }
 }
