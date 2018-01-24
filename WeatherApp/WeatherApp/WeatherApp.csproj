@@ -10,6 +10,7 @@
     <PackageReference Include="Unity" Version="5.5.5" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.0.0.362" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.3" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
 

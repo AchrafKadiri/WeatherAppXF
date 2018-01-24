@@ -20,7 +20,6 @@ namespace WeatherApp
         {
             InitializeComponent();
             
-            //CAMBIO
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
         
@@ -34,7 +33,8 @@ namespace WeatherApp
 
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.Register<IWeatherService, WeatherService>();
-           
+            containerRegistry.Register<IGeoLocationService, GeoLocationService>();
+
         }
         
     }

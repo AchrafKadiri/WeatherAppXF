@@ -81,8 +81,8 @@ namespace WeatherApp.ViewModels
             IsBusy = false;
             return
                 ex is ConnectionException ? "No Conection to Server. Please try again later" :
-                ex is ApiException ? ex.Message : "Can not connect to the Server. Please try again later";
-
+                ex is ApiException ? "Can not connect to the Server. Please try again later" :
+                ex is GeoLocationException ? ex.Message : "Problems getting current location. Pleas try again later" ;
 
         }
 
