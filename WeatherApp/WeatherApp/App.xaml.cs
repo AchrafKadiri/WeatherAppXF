@@ -20,6 +20,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             
+            //CAMBIO
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
         
