@@ -19,27 +19,34 @@ namespace WeatherApp.ViewModels
     {
         private INavigationService _navigationService;
         private IWeatherService _weatherService;
-
+        private IGeoLocationService geoLocationService;
        
-        public MainPageViewModel(INavigationService navigationService, IWeatherService weatherService) : base(navigationService)
+        public MainPageViewModel(INavigationService navigationService, IWeatherService weatherService, IGeoLocationService geoLocationService) : base(navigationService)
         {
             _navigationService = navigationService;
             _weatherService = weatherService;
-
+            this.geoLocationService = geoLocationService;
         }
 
 
 
-        public async Task Load()
+        public async Task Load(bool getByLocation)
         {
             try
             {
-                var weatherTask = _weatherService.GetWeatherByLocation(City);
-                await Task.WhenAll(weatherTask);
+                WeatherObject weatherTask = null;
 
-                var currentWeather = weatherTask.Result;
+                if (getByLocation)
+                {
+                    base.City = await geoLocationService.GetDeviceAddress();
+                }
 
-                Set(currentWeather);
+                weatherTask = await _weatherService.GetWeatherByLocation(City);
+
+                //await Task.WhenAll(weatherTask);
+                //var currentWeather = weatherTask.Result;
+
+                Set(weatherTask);
 
             }
             catch (Exception ex)
@@ -75,12 +82,17 @@ namespace WeatherApp.ViewModels
           async () =>
           {
               IsBusy = true;
-              await Load().ToTaskRun();
+              await Load(false).ToTaskRun();
              
-              
-
           }));
 
+        public ICommand WeatherGetByLocationCommand => (new Command(
+          async () =>
+          {
+              IsBusy = true;
+              await Load(true).ToTaskRun();
+
+          }));
 
 
         public override void OnNavigatingTo(NavigationParameters parameters)

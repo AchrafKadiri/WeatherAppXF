@@ -5,44 +5,46 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="WeatherApp.Pages.Page1">
     <ContentPage.Content>
-    <StackLayout Padding="20"
+        <StackLayout Padding="20"
                  Spacing="40">
-      <StackLayout Padding="0,0,0,20">
-        <Label Text="Forecast search:"
+            <StackLayout Padding="0,0,0,20">
+                <Label Text="Forecast search:"
                VerticalOptions="Center"
                FontSize="Large"
                FontAttributes="Bold" />
-        <Entry Text="{Binding City, Mode=TwoWay}" />
-        <Button Text="Get Weather"
+                <Entry Text="{Binding City, Mode=TwoWay}" />
+                <Button Text="Get Weather"
                 Command="{Binding WeatherGetCommand}" />
-      </StackLayout>
-      <ActivityIndicator IsRunning="{Binding IsBusy}"
+                <Button Text="Get location weather"
+                Command="{Binding WeatherGetByLocationCommand}" />
+            </StackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
                          HeightRequest="40" />
-      <StackLayout HorizontalOptions="Center"
+            <StackLayout HorizontalOptions="Center"
                    IsVisible="{Binding IsNotBusy}">
-        <StackLayout Orientation="Horizontal">
-          <Label Text="{Binding City}"
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding City}"
                  HorizontalTextAlignment="Center"
                  FontAttributes="Bold"
                  FontSize="Large" />
-          <Label Text="{Binding SysInfo.Country}"
+                    <Label Text="{Binding SysInfo.Country}"
                  FontSize="Medium"
                  HorizontalTextAlignment="Center" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-          <Label Text="Temp Min: " />
-          <Label Text="{Binding MainInfo.TempMin}"
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Temp Min: " />
+                    <Label Text="{Binding MainInfo.TempMin}"
                  HorizontalTextAlignment="Center" />
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-          <Label Text="Temp Max" />
-          <Label Text="{Binding MainInfo.TempMax}"
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Temp Max" />
+                    <Label Text="{Binding MainInfo.TempMax}"
                  HorizontalTextAlignment="Center" />
-        </StackLayout>
-        <Button Text="Details"
+                </StackLayout>
+                <Button Text="Details"
                 Command="{Binding NavigateDetailCommand}" />
 
-      </StackLayout>
-    </StackLayout>
-  </ContentPage.Content>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

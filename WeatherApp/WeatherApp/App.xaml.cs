@@ -33,7 +33,8 @@ namespace WeatherApp
 
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.Register<IWeatherService, WeatherService>();
-           
+            containerRegistry.Register<IGeoLocationService, GeoLocationService>();
+
         }
         
     }
